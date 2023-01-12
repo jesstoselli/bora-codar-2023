@@ -20,7 +20,9 @@ export const MainContent = styled.div`
 export const MainCard = styled.article`
   width: 30rem;
   background: rgba(23, 21, 21, 0.75);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.75);
   border-radius: 20px;
+  /* font-family: "Roboto Condensed", sans-serif; */
 
   display: flex;
   flex-direction: column;

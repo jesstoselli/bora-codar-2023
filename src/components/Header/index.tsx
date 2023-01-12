@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { HeaderContainer, Logo, Challenges, HeaderContent } from "./styles";
 
 function Header() {
@@ -9,10 +10,12 @@ function Header() {
           <span>by jess.to</span>
         </Logo>
         <Challenges>
-          <p>about</p>
-          <p>music player</p>
-          <p>product card</p>
-          <p className='tba'>...TBA</p>
+          <Link to={"/"}>about</Link>
+          <Link to={"music-player"}>music player</Link>
+          <Link to={"product-card"}>product card</Link>
+          <Link to={""} className='tba'>
+            ...TBA
+          </Link>
         </Challenges>
       </HeaderContent>
     </HeaderContainer>
