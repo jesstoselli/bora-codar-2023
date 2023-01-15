@@ -4,7 +4,7 @@ export const HeaderContainer = styled.header`
   width: 100%;
   height: 6rem;
   background: rgba(23, 21, 21, 0.75);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.65);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,7 +47,7 @@ export const Challenges = styled.section`
   flex: 1;
 
   a {
-    margin-left: 1rem;
+    margin-left: 2rem;
     font-weight: 700;
     font-size: 1.125rem;
     cursor: pointer;

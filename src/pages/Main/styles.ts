@@ -10,19 +10,20 @@ export const MainContainer = styled.main`
 export const MainContent = styled.div`
   width: 1200px;
 
-  margin-top: 3rem;
-
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  /* background: rgba(23, 21, 21, 0.75);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.75);
+  border-radius: 0 0 20px 20px; */
 `;
 
 export const MainCard = styled.article`
   width: 30rem;
   background: rgba(23, 21, 21, 0.75);
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.75);
-  border-radius: 20px;
-  /* font-family: "Roboto Condensed", sans-serif; */
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.75);
+  border-radius: 0 0 20px 20px;
 
   display: flex;
   flex-direction: column;
@@ -30,6 +31,10 @@ export const MainCard = styled.article`
   align-items: center;
 
   padding: 1rem;
+
+  h2 {
+    margin: 1rem;
+  }
 
   img {
     width: 15rem;

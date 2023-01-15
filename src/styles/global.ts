@@ -8,6 +8,18 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
+  html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html,body {
+  height:100%;
+}
+
   body {
     margin: 0;
     -webkit-font-smoothing: antialiased;
@@ -16,7 +28,7 @@ export default createGlobalStyle`
   }
 
   body, input, button, a {
-    font: 1rem 'Roboto', sans-serif;
+    font: 1rem 'Roboto Condensed', sans-serif;
     border: none;
     text-decoration: none;
     color: #F9F9F9;
