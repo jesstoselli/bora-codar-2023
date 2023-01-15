@@ -7,9 +7,9 @@ export interface ArtistCellProps {
   onClick: () => void;
 }
 
-function ArtistCell({ albumCover, artist }: ArtistCellProps) {
+function ArtistCell({ albumCover, artist, onClick }: ArtistCellProps) {
   return (
-    <ArtistCellContainer>
+    <ArtistCellContainer onClick={onClick}>
       <img src={albumCover} alt={artist} />
       <p>{artist}</p>
     </ArtistCellContainer>

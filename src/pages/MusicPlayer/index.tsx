@@ -31,54 +31,78 @@ function MusicPlayer() {
     MusicPlayerCard.Full
   );
 
-  function pickAnArtist() {
-    console.log("Artist picked.");
+  const [pickedPlayer, setPickedPlayer] = useState({
+    player1: "picked",
+    player2: "",
+    player3: "",
+  });
+
+  function pickArtist(artist: string) {
+    console.log(artist + " picked.");
   }
 
-  const MusicPlayerCard1 = (
+  const musicPlayerCard1 = (
     <MusicPlayerCardOne>
       {/* replace alt with album title */}
       <img className='albumCover' src={albumCover} alt='Album Cover' />
       <SongInfo
-        playerVersion={MusicPlayerCard.Full}
+        playerVersion={playerCard}
         title='Acorda Devinho'
         artist='Banda Rocketseat'
       />
-      <PlayerControls playerVersion={MusicPlayerCard.Full} />
+      <PlayerControls playerVersion={playerCard} />
     </MusicPlayerCardOne>
   );
 
-  const MusicPlayerCard2 = (
+  const musicPlayerCard2 = (
     <MusicPlayerCardTwo>
       {/* replace alt with album title */}
       <div>
         <img className='albumCover' src={albumCover} alt='Album Cover' />
         <SongInfo
-          playerVersion={MusicPlayerCard.Compact}
+          playerVersion={playerCard}
           title='Acorda Devinho'
           artist='Banda Rocketseat'
         />
       </div>
-      <PlayerControls playerVersion={MusicPlayerCard.Compact} />
+      <PlayerControls playerVersion={playerCard} />
     </MusicPlayerCardTwo>
   );
 
-  const MusicPlayerCard3 = (
+  const musicPlayerCard3 = (
     <MusicPlayerCardThree>
       {/* replace alt with album title */}
       <div>
         <img className='albumCover' src={albumCover} alt='Album Cover' />
         <SongInfo
-          playerVersion={MusicPlayerCard.Minimal}
+          playerVersion={playerCard}
           title='Acorda Devinho'
           artist='Banda Rocketseat'
         />
       </div>
-      <PlayerControls playerVersion={MusicPlayerCard.Minimal} />
+      <PlayerControls playerVersion={playerCard} />
     </MusicPlayerCardThree>
   );
 
-  function pickMusicPlayerCard() {}
+  function pickMusicPlayerCard(playerNumber: number) {
+    switch (playerNumber) {
+      case 1: {
+        setPickedPlayer({ player1: "picked", player2: "", player3: "" });
+        setPlayerCard(MusicPlayerCard.Full);
+        return musicPlayerCard1;
+      }
+      case 2: {
+        setPickedPlayer({ player1: "", player2: "picked", player3: "" });
+        setPlayerCard(MusicPlayerCard.Compact);
+        return musicPlayerCard2;
+      }
+      case 3: {
+        setPickedPlayer({ player1: "", player2: "", player3: "picked" });
+        setPlayerCard(MusicPlayerCard.Minimal);
+        return musicPlayerCard3;
+      }
+    }
+  }
 
   return (
     <MusicPlayerContainer>
@@ -89,21 +113,21 @@ function MusicPlayer() {
             <h3>pick an artist</h3>
             <p>their latest success will hit the player</p>
             <ArtistCell
-              onClick={pickAnArtist}
+              onClick={() => pickArtist("Adele")}
               albumCover={
                 "https://i.scdn.co/image/ab6761610000e5eb68f6e5892075d7f22615bd17"
               }
               artist={"Adele"}
             />
             <ArtistCell
-              onClick={pickAnArtist}
+              onClick={() => pickArtist("Lily Allen")}
               albumCover={
                 "https://cdns-images.dzcdn.net/images/cover/bbd5dc34c1e6ebe72dde67c4f908cb67/264x264.jpg"
               }
               artist={"Lily Allen"}
             />
             <ArtistCell
-              onClick={pickAnArtist}
+              onClick={() => pickArtist("Meghan Trainor")}
               albumCover={
                 "https://cdns-images.dzcdn.net/images/cover/57c8b89632809b6efca8d7e1c2da7ec4/264x264.jpg"
               }
@@ -115,14 +139,31 @@ function MusicPlayer() {
             <PlayersContainerHeader>
               <h3>pick a player</h3>
               <div>
-                <p className='picked'>player 1</p>
+                <p
+                  className={pickedPlayer.player1}
+                  onClick={() => pickMusicPlayerCard(1)}
+                >
+                  player 1
+                </p>
                 <span>|</span>
-                <p>player 2</p>
+                <p
+                  className={pickedPlayer.player2}
+                  onClick={() => pickMusicPlayerCard(2)}
+                >
+                  player 2
+                </p>
                 <span>|</span>
-                <p>player 3</p>
+                <p
+                  className={pickedPlayer.player3}
+                  onClick={() => pickMusicPlayerCard(3)}
+                >
+                  player 3
+                </p>
               </div>
             </PlayersContainerHeader>
-            {MusicPlayerCard3}
+            {(playerCard === MusicPlayerCard.Full && musicPlayerCard1) ||
+              (playerCard === MusicPlayerCard.Compact && musicPlayerCard2) ||
+              (playerCard === MusicPlayerCard.Minimal && musicPlayerCard3)}
           </PlayersContainer>
         </div>
       </MusicPlayerContent>

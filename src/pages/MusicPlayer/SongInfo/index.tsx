@@ -9,8 +9,6 @@ export interface SongInfoProps {
 }
 
 function SongInfo({ title, artist, playerVersion }: SongInfoProps) {
-  console.log(playerVersion);
-
   return (
     <SongInfoContainer playerVersion={playerVersion}>
       <h4>{title}</h4>

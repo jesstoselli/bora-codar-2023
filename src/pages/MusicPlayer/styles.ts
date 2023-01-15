@@ -16,6 +16,7 @@ export const MusicPlayerContainer = styled.main`
 export const MusicPlayerContent = styled.div`
   width: 75rem;
   height: calc(100vh - 6rem - 2rem); //6 rem -> header size + 6rem -> margin
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,7 +56,7 @@ export const ArtistsContainer = styled.section`
 `;
 
 export const PlayersContainer = styled.section`
-  height: 100%;
+  height: 40rem;
 
   color: #e1e1e6;
 
@@ -63,7 +64,6 @@ export const PlayersContainer = styled.section`
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 
   background: rgb(23, 21, 21);
