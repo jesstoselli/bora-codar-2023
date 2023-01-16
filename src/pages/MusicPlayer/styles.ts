@@ -51,7 +51,28 @@ export const ArtistsContainer = styled.section`
 
   > p {
     align-self: center;
-    margin-bottom: 2rem;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  > a {
+    background-color: #1db954;
+    border: 2px solid #191414;
+    padding: 0.25rem 1rem;
+    border-radius: 100px;
+    margin: 1rem 0;
+
+    text-align: center;
+    transition: all 1s;
+
+    > img {
+      width: 6rem;
+    }
+
+    :hover {
+      background-color: #191414;
+      border: 2px solid #1db954;
+    }
   }
 `;
 

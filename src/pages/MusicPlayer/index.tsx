@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // Styles
 import {
@@ -14,11 +14,15 @@ import {
 
 // Images
 import albumCover from "../../assets/albumcoverplaceholder.png";
+import spotifyLogoBlack from "../../assets/spotify-logo-black.svg";
+import spotifyLogoGreen from "../../assets/spotify-logo-green.svg";
 
 // Components
 import PlayerControls from "./PlayerControls";
 import SongInfo from "./SongInfo";
 import ArtistCell from "./ArtistCell";
+import spotifyApi from "../../services/spotifyApi";
+import { useSearchParams } from "react-router-dom";
 
 export enum MusicPlayerCard {
   Full = "FULL",
@@ -27,6 +31,7 @@ export enum MusicPlayerCard {
 }
 
 function MusicPlayer() {
+  const [isLoading, setIsLoading] = useState(false);
   const [playerCard, setPlayerCard] = useState<MusicPlayerCard>(
     MusicPlayerCard.Full
   );
@@ -36,6 +41,29 @@ function MusicPlayer() {
     player2: "",
     player3: "",
   });
+
+  const [spotifyLogoColor, setSpotifyLogoColor] = useState(false); // initiate it at false
+
+  const [userToken, setUserToken] = useState<string>(() => {
+    const storagedSearch = localStorage.getItem("@boraCodar:Spotify");
+
+    if (storagedSearch) {
+      return storagedSearch;
+    }
+    return "";
+  });
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    const code = searchParams.get("code");
+
+    if (code != null) {
+      localStorage.setItem("@boraCodar:Spotify", code);
+      searchParams.delete("code");
+      setSearchParams(searchParams);
+    }
+  }, []);
 
   function pickArtist(artist: string) {
     console.log(artist + " picked.");
@@ -104,14 +132,30 @@ function MusicPlayer() {
     }
   }
 
+  function tryOut() {
+    spotifyApi.get("/auth-spotify").then((res) => {
+      console.log(res.data);
+    });
+  }
+
   return (
     <MusicPlayerContainer>
       <MusicPlayerContent>
         <h2>challenge - music player</h2>
         <div className='grid'>
           <ArtistsContainer>
-            <h3>pick an artist</h3>
-            <p>their latest success will hit the player</p>
+            <h3 onClick={tryOut}>pick an artist</h3>
+            <p>login to your Spotify account to test the music players</p>
+            <a
+              href={`https://accounts.spotify.com/authorize?client_id=11a37ffe46ce40a2963b244f1de6e82a&response_type=code&redirect_uri=http://127.0.0.1:5173/music-player`}
+              onMouseEnter={() => setSpotifyLogoColor(true)}
+              onMouseLeave={() => setSpotifyLogoColor(false)}
+            >
+              <img
+                src={spotifyLogoColor ? spotifyLogoGreen : spotifyLogoBlack}
+                alt='Login to Spotify'
+              />
+            </a>
             <ArtistCell
               onClick={() => pickArtist("Adele")}
               albumCover={
