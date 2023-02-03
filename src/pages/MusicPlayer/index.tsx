@@ -23,6 +23,7 @@ import SongInfo from "./SongInfo";
 import ArtistCell from "./ArtistCell";
 import spotifyApi from "../../services/spotifyApi";
 import { useSearchParams } from "react-router-dom";
+import { config } from "process";
 
 export enum MusicPlayerCard {
   Full = "FULL",
@@ -55,14 +56,43 @@ function MusicPlayer() {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  useEffect(() => {
-    const code = searchParams.get("code");
+  // useEffect(() => {
+  //   setIsLoading(true);
+  //   const code = searchParams.get("code");
 
-    if (code != null) {
-      localStorage.setItem("@boraCodar:Spotify", code);
-      searchParams.delete("code");
-      setSearchParams(searchParams);
+  //   // console.log(userToken);
+
+  //   if (userToken === "" && code !== null) {
+  //     localStorage.setItem("@boraCodar:Spotify", code);
+  //     setUserToken(code);
+
+  //     try {
+  //       spotifyApi
+  //         .get("/spotify-artists")
+  //         .then((response) => console.log(response.data));
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }
+
+  //   searchParams.delete("code");
+  //   setSearchParams(searchParams);
+
+  //   setIsLoading(false);
+  // }, []);
+
+  useEffect(() => {
+    setIsLoading(true);
+
+    try {
+      spotifyApi
+        .get("/spotify-artists")
+        .then((response) => console.log(response.data));
+    } catch (error) {
+      console.log(error);
     }
+
+    setIsLoading(false);
   }, []);
 
   function pickArtist(artist: string) {
@@ -132,21 +162,15 @@ function MusicPlayer() {
     }
   }
 
-  function tryOut() {
-    spotifyApi.get("/auth-spotify").then((res) => {
-      console.log(res.data);
-    });
-  }
-
   return (
     <MusicPlayerContainer>
       <MusicPlayerContent>
         <h2>challenge - music player</h2>
         <div className='grid'>
           <ArtistsContainer>
-            <h3 onClick={tryOut}>pick an artist</h3>
+            <h3>pick an artist</h3>
             <p>login to your Spotify account to test the music players</p>
-            <a
+            {/* <a
               href={`https://accounts.spotify.com/authorize?client_id=11a37ffe46ce40a2963b244f1de6e82a&response_type=code&redirect_uri=http://127.0.0.1:5173/music-player`}
               onMouseEnter={() => setSpotifyLogoColor(true)}
               onMouseLeave={() => setSpotifyLogoColor(false)}
@@ -155,7 +179,7 @@ function MusicPlayer() {
                 src={spotifyLogoColor ? spotifyLogoGreen : spotifyLogoBlack}
                 alt='Login to Spotify'
               />
-            </a>
+            </a> */}
             <ArtistCell
               onClick={() => pickArtist("Adele")}
               albumCover={

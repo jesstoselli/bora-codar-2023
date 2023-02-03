@@ -8,11 +8,21 @@ export const MainContainer = styled.main`
 `;
 
 export const MainContent = styled.div`
-  width: 1200px;
+  width: 75rem;
+  height: calc(100vh - 6rem - 2rem); //6 rem -> header size + 6rem -> margin
 
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  background: rgba(23, 21, 21, 0.75);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.75);
+  border-radius: 0 0 20px 20px;
+  /* width: 1200px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center; */
 
   /* background: rgba(23, 21, 21, 0.75);
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.75);
@@ -21,9 +31,9 @@ export const MainContent = styled.div`
 
 export const MainCard = styled.article`
   width: 30rem;
-  background: rgba(23, 21, 21, 0.75);
+  /* background: rgba(23, 21, 21, 0.75);
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.75);
-  border-radius: 0 0 20px 20px;
+  border-radius: 0 0 20px 20px; */
 
   display: flex;
   flex-direction: column;

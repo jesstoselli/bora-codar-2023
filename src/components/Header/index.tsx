@@ -13,6 +13,7 @@ function Header() {
           <Link to={"/"}>about</Link>
           <Link to={"music-player"}>music player</Link>
           <Link to={"product-card"}>product card</Link>
+          <Link to={"calculator"}>calculator</Link>
           <Link to={""} className='tba'>
             ...TBA
           </Link>
